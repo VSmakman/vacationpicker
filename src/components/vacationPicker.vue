@@ -5,6 +5,18 @@
         <h1>
           Pick your next vacation
         </h1>
+        <h2>
+          Add a new country
+        </h2>
+        <input type="text" v-model="newCountry"/> <button class="btn btn-dark" @click="addCountry()">toevoegen</button>
+        <h3>
+          {{newCountry}}
+        </h3>
+        <ul class="list-group">
+          <li class="list-group-item" v-for="(country, index) in newCountries" :key="index">
+            {{country}}
+          </li>
+        </ul>
         <ul class="list-group">
           <li class="list-group-item" v-for="(country,index) in countryData.countries" v-bind:key="country.id" :title="country.details"
               @click="selectCountry(index)">
@@ -54,17 +66,25 @@
 
 <script>
 import countryData from '../data/countryData'
+import mixins from "@/mixins/mixins";
 export default {
   name: "vacationPicker",
+  mixins: [mixins],
   data(){
     return {
       countryData,
       counter:0,
       count:0,
-      selectedCountryIndex:0
+      selectedCountryIndex:0,
+      newCountry:"",
+      newCountries:[]
     }
   },
   methods: {
+    addCountry(){
+      this.newCountries.push(this.newCountry);
+      this.newCountry = "";
+    },
     increment() {
       this.count++;
     },

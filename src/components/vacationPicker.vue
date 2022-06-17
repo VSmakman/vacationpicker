@@ -23,35 +23,6 @@
             {{country.name}}
           </li>
         </ul>
-      </div>
-      <div class="col-md-6">
-        <h3>
-          Geselecteerd:
-        </h3>
-        <ul class="list-group">
-          <li class="list-group-item">
-            {{selectedCountry.id}}
-          </li>
-          <li class="list-group-item">
-            <img :src="getImgUrl(selectedCountry.img)" style="height:18rem" class="img-fluid">
-          </li>
-          <li class="list-group-item">
-            {{selectedCountry.name}}
-          </li>
-          <li class="list-group-item">
-            {{selectedCountry.capital}}
-          </li>
-          <li class="list-group-item">
-            {{selectedCountry.cost}}
-          </li>
-          <li class="list-group-item">
-            {{selectedCountry.details}}
-          </li>
-
-          <li v-if="isExpensive" class="list-group-item">
-            <p class="bg-danger">DUUR!</p>
-          </li>
-        </ul>
         <p> Teller= {{counter}}</p>
         <button v-on:click="counter++" class="btn btn-success">+</button>
         <button v-on:click="counter--" class="btn btn-danger">-</button>
@@ -60,22 +31,25 @@
         <button @click="increment()" class="btn btn-success">+</button>
         <button @click="decrement()" class="btn btn-danger">-</button>
       </div>
+      <div class="col-6">
+        <CountryDetail v-if="selectedCountry" :country="selectedCountry"/>
+      </div>
     </div>
   </div>
 </template>
 
 <script>
 import countryData from '../data/countryData'
-import mixins from "@/mixins/mixins";
+import CountryDetail from "@/components/CountryDetail";
 export default {
   name: "vacationPicker",
-  mixins: [mixins],
+  components: {CountryDetail},
   data(){
     return {
       countryData,
       counter:0,
       count:0,
-      selectedCountryIndex:0,
+      selectedCountryIndex: 0,
       newCountry:"",
       newCountries:[]
     }
@@ -102,7 +76,7 @@ export default {
   },
     computed:{
       selectedCountry(){
-        console.log("country angeroepen");
+        console.log("country aangeroepen");
         return{
           id: this.countryData.countries[this.selectedCountryIndex].id,
           name: this.countryData.countries[this.selectedCountryIndex].name,
@@ -113,9 +87,7 @@ export default {
 
         }
       },
-      isExpensive(){
-        return this.countryData.countries[this.selectedCountryIndex].cost > 1000
-      }
+
     }
   }
 

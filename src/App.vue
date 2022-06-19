@@ -1,23 +1,19 @@
 <template>
-<!--  <img alt="Vue logo" src="./assets/logo.png">-->
-<!--  <HelloWorld msg="This is my first vue project"/>-->
-<!--  <CustomerList idk="nieuwe tekst" />-->
-  <vacationPicker />
+
+  <div class="container-fluid p-0">
+    <main-navigation></main-navigation>
+    <router-view />
+  </div>
+
 </template>
 
 <script>
-// import HelloWorld from './components/HelloWorld.vue'
-// import CustomerList from "@/components/CustomerList";
-import vacationPicker from "@/components/vacationPicker";
-
+import MainNavigation from "@/components/MainNavigation";
 export default {
   name: 'App',
-  components: {
-    // HelloWorld,
-    // CustomerList,
-    vacationPicker
+  components: {MainNavigation}
   }
-}
+
 </script>
 
 <style>
@@ -27,6 +23,5 @@ export default {
   -moz-osx-font-smoothing: grayscale;
   text-align: center;
   color: #2c3e50;
-  margin-top: 60px;
 }
 </style>

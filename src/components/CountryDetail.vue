@@ -23,7 +23,7 @@
     </li>
 
     <li v-if="isExpensive" class="list-group-item">
-      <p class="bg-danger">To expensive!</p>
+      <p class="bg-danger">Too expensive!</p>
     </li>
   </ul>
   <span class="justify-content-center">

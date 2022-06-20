@@ -8,7 +8,7 @@
         <ul class="list-group">
           <li class="list-group-item" v-for="(country,index) in countryData.countries" v-bind:key="country.id" :title="country.details"
               @click="selectCountry(index)">
-            {{country.name}}
+            {{country.name}} {{country.rating}}
           </li>
         </ul>
       </div>
